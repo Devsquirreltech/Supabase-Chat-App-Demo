@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class StyledTextField extends StatelessWidget {
   final String hintText;
   final TextAlign textAlign;
-  final Function(String)? onChanged;
+  final Function(String)? validator;
+  final TextEditingController? controller;
   final String? errorText;
   final Widget? trailing;
   final bool isObscure;
@@ -12,8 +13,11 @@ class StyledTextField extends StatelessWidget {
       {Key? key,
       required this.hintText,
       this.textAlign = TextAlign.start,
-      this.onChanged,
-      this.errorText, this.trailing, this.isObscure = false})
+      this.controller,
+      this.validator,
+      this.errorText,
+      this.trailing,
+      this.isObscure = false})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -26,10 +30,10 @@ class StyledTextField extends StatelessWidget {
         color: Theme.of(context).accentColor,
         borderRadius: BorderRadius.circular(18.0),
       ),
-      child: TextField(
+      child: TextFormField(
         textInputAction: TextInputAction.next,
         textAlign: textAlign,
-        onChanged: onChanged,
+        controller: controller,
         obscureText: isObscure,
         decoration: InputDecoration(
           suffixIcon: trailing,
