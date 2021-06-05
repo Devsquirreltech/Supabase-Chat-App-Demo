@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supachat/utils/auth_utils.dart';
@@ -11,10 +13,28 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool isObscure = true;
-  bool isLoading = false;
+  bool _lights = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  @override
+  void initState() {
+    getCurrentTheme();
+    super.initState();
+  }
+
+  getCurrentTheme() async {
+    final currentTheme = await AdaptiveTheme.getThemeMode();
+    if (currentTheme == AdaptiveThemeMode.light)
+      setState(() {
+        _lights = true;
+      });
+    else
+      setState(() {
+        _lights = false;
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -31,6 +51,24 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: size.height * 0.1,
                 width: size.width,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: CupertinoSwitch(
+                    value: _lights,
+                    activeColor: theme.primaryColor,
+                    onChanged: (bool value) {
+                      value
+                          ? AdaptiveTheme.of(context).setLight()
+                          : AdaptiveTheme.of(context).setDark();
+                      setState(() {
+                        _lights = value;
+                      });
+                    },
+                  ),
+                ),
               ),
               Text(
                 'Welcome Back!',
