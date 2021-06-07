@@ -11,7 +11,6 @@ class AuthUtils extends ChangeNotifier{
     try{
       final response = await _client.auth.signIn(email: email, password: password);
       _user = response.user;
-      print(_user!.id);
       notifyListeners();
     }
     catch(e){
@@ -23,7 +22,6 @@ class AuthUtils extends ChangeNotifier{
   Future<void> signUp(String email, String password) async {
     try{
       final response = await _client.auth.signUp(email, password);
-      _user = response.user;
       notifyListeners();
     }
     catch(e){

@@ -105,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     setState(() {
                       isLoading = true;
                     });
-                    await Provider.of<AuthUtils>(context, listen: false).signIn(
+                    await Provider.of<AuthUtils>(context, listen: false).signUp(
                         _emailController.text.trim(),
                         _passwordController.text.trim());
                     setState(() {
