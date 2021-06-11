@@ -77,18 +77,28 @@ class _MyAppState extends State<MyApp> {
           navigatorKey: _navigatorKey,
           theme: theme,
           darkTheme: darkTheme,
-          home: App(),
+          home: SplashScreen(),
         ),
       ),
     );
   }
 }
 
-class App extends StatelessWidget {
+class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sb.User? _user = Provider.of<AuthUtils>(context).getUser;
-    print(_user);
-    return _user == null ? LoginPage() : Homepage();
+    return FutureBuilder(
+      future: Provider.of<AuthUtils>(context, listen: false).recoverSession(),
+      initialData: false,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData && snapshot.data) {
+          return _user == null ? LoginPage() : Homepage();
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
   }
 }
