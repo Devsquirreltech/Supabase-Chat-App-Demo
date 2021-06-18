@@ -20,13 +20,11 @@ void main() async {
   ));
 }
 
-
 Future<void> initUniLinks() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   // Platform messages may fail, so we use a try/catch PlatformException.
   try {
     final initialLink = await getInitialLink();
-    print(initialLink);
     await prefs.setString('googleSessionUrl', initialLink ?? 'empty');
     // Parse the link and warn the user, if it is not correct,
     // but keep in mind it could be `null`.
