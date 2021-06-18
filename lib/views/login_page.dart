@@ -158,8 +158,17 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   StyledButton(
                     'Sign In with Google',
+                    isLoading: isLoading,
                     status: true,
-                    onPressed: () {},
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      await Provider.of<AuthUtils>(context, listen: false).onSignInWithGoogle(context);
+                      setState(() {
+                        isLoading = false;
+                      });
+                    },
                     color: theme.buttonColor,
                     fontColor: theme.accentColor,
                     leading: Padding(

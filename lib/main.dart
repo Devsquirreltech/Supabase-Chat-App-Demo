@@ -2,17 +2,38 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase/supabase.dart' as sb;
 import 'package:supachat/utils/auth_utils.dart';
 import 'package:supachat/views/home_page.dart';
 import 'package:supachat/views/login_page.dart';
+import 'dart:async';
+import 'package:uni_links/uni_links.dart';
+import 'package:flutter/services.dart' show PlatformException;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initUniLinks();
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   runApp(MyApp(
     savedThemeMode: savedThemeMode,
   ));
+}
+
+
+Future<void> initUniLinks() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  // Platform messages may fail, so we use a try/catch PlatformException.
+  try {
+    final initialLink = await getInitialLink();
+    print(initialLink);
+    await prefs.setString('googleSessionUrl', initialLink ?? 'empty');
+    // Parse the link and warn the user, if it is not correct,
+    // but keep in mind it could be `null`.
+  } on PlatformException {
+    // Handle exception by warning the user their action did not succeed
+    // return?
+  }
 }
 
 class MyApp extends StatefulWidget {
