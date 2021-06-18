@@ -49,17 +49,16 @@ class AuthUtils extends ChangeNotifier {
     }
   }
 
-
   Future<void> onSignInWithGoogle(BuildContext context) async {
     final response = await _client.auth.signIn(provider: Provider.google);
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //SharedPreferences prefs = await SharedPreferences.getInstance();
     if (response.error != null) {
       print("Error! Could not login with google");
       print(response.error!.message);
     } else {
       if (await canLaunch(response.url!)) {
         print('response.url: ${response.url}');
-         await launch(response.url!);
+        await launch(response.url!);
         SystemChannels.platform.invokeMethod('SystemNavigator.pop');
       } else {
         throw 'Could not launch ${response.url}';
@@ -71,8 +70,9 @@ class AuthUtils extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? sessionString = prefs.getString('session');
     final String? googleSessionUrl = prefs.getString('googleSessionUrl');
-    if(googleSessionUrl != null && googleSessionUrl != 'empty'){
-      final callback = await _client.auth.getSessionFromUrl(Uri.parse(googleSessionUrl));
+    if (googleSessionUrl != null && googleSessionUrl != 'empty') {
+      final callback =
+          await _client.auth.getSessionFromUrl(Uri.parse(googleSessionUrl));
       _user = callback.user;
       notifyListeners();
       return true;
