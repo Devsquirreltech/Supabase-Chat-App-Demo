@@ -1,6 +1,5 @@
 name: supachat
 description: Demo chat app using supabase and flutter
-publish_to: 'none'
 version: 1.0.1+2
 
 environment:
@@ -18,8 +17,10 @@ dependencies:
   uni_links: ^0.5.1
 
 dev_dependencies:
+  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
+
 flutter:
   uses-material-design: true
   fonts:

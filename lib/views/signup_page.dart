@@ -43,7 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                Text(
+                const Text(
                   'Please fill in the form to continue',
                   style: TextStyle(
                     fontSize: 12.0,
@@ -54,7 +54,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(
                   height: size.height * 0.1,
                 ),
-                StyledTextField(
+                const StyledTextField(
                   hintText: 'Full Name',
                 ),
                 StyledTextField(
@@ -67,7 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     return null;
                   },
                 ),
-                StyledTextField(
+                const StyledTextField(
                   hintText: 'Phone Number ',
                 ),
                 StyledTextField(
@@ -131,7 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Text(
+                      child: const Text(
                         'Sign In',
                         style: TextStyle(
                           fontSize: 12.0,
