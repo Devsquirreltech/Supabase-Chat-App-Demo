@@ -70,17 +70,15 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Welcome Back!',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    height: size.height * 0.02,
-                  ),
-                  Text(
+                  SizedBox(height: size.height * 0.02),
+                  const Text(
                     'Please sign in to your account',
                     style: TextStyle(
                       fontSize: 12.0,
@@ -127,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Container(
                     width: size.width * 0.85,
-                    child: Text(
+                    child: const Text(
                       'Forget Password?',
                       textAlign: TextAlign.right,
                       style: TextStyle(
@@ -137,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: SizedBox(),
                   ),
                   StyledButton(
@@ -148,9 +146,9 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {
                         isLoading = true;
                       });
-                      await Provider.of<AuthUtils>(context, listen: false).signIn(
-                          _emailController.text.trim(),
-                          _passwordController.text.trim());
+                      await Provider.of<AuthUtils>(context, listen: false)
+                          .signIn(_emailController.text.trim(),
+                              _passwordController.text.trim());
                       setState(() {
                         isLoading = false;
                       });
@@ -164,7 +162,8 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {
                         isLoading = true;
                       });
-                      await Provider.of<AuthUtils>(context, listen: false).onSignInWithGoogle(context);
+                      await Provider.of<AuthUtils>(context, listen: false)
+                          .onSignInWithGoogle(context);
                       setState(() {
                         isLoading = false;
                       });
@@ -202,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           'Sign Up',
                           style: TextStyle(
                             fontSize: 12.0,

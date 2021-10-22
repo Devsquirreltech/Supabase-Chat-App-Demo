@@ -35,10 +35,10 @@ class StyledButton extends StatelessWidget {
         child: isLoading
             ? const CircularProgressIndicator()
             : Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                leading ?? Container(),
-                Text(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  leading ?? Container(),
+                  Text(
                     text,
                     style: TextStyle(
                         color: fontColor != null
@@ -47,8 +47,8 @@ class StyledButton extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0),
                   ),
-              ],
-            ),
+                ],
+              ),
       ),
     );
   }

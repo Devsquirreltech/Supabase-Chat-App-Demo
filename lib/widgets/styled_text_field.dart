@@ -40,10 +40,7 @@ class StyledTextField extends StatelessWidget {
           hintText: hintText,
           errorText: errorText,
           border: InputBorder.none,
-          hintStyle: TextStyle(
-            color: Colors.grey,
-            fontSize: 16.0,
-          ),
+          hintStyle: const TextStyle(color: Colors.grey, fontSize: 16.0),
         ),
       ),
     );

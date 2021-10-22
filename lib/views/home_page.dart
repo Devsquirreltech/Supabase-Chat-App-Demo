@@ -9,9 +9,7 @@ class Homepage extends StatelessWidget {
     final User user = provider.Provider.of<AuthUtils>(context).getUser!;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Center(
-        child: Text('Hello ${user.email}'),
-      ),
+      body: Center(child: Text('Hello ${user.email}')),
     );
   }
 }

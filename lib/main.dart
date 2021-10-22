@@ -61,11 +61,11 @@ class _MyAppState extends State<MyApp> {
           brightness: Brightness.light,
           primarySwatch: Colors.blue,
           accentColor: Colors.white,
-          backgroundColor: Color.fromRGBO(243, 243, 243, 1.0),
+          backgroundColor: const Color.fromRGBO(243, 243, 243, 1.0),
           fontFamily: 'George',
           buttonColor: Colors.black,
-          primaryColor: Color.fromRGBO(84, 104, 255, 1.0),
-          appBarTheme: AppBarTheme(
+          primaryColor: const Color.fromRGBO(84, 104, 255, 1.0),
+          appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
             elevation: 5,
             iconTheme: IconThemeData(color: Colors.black),
@@ -78,12 +78,12 @@ class _MyAppState extends State<MyApp> {
         dark: ThemeData(
           brightness: Brightness.dark,
           primarySwatch: Colors.blue,
-          accentColor: Color.fromRGBO(38, 42, 53, 1.0),
-          backgroundColor: Color.fromRGBO(25, 26, 31, 1.0),
+          accentColor: const Color.fromRGBO(38, 42, 53, 1.0),
+          backgroundColor: const Color.fromRGBO(25, 26, 31, 1.0),
           fontFamily: 'George',
           buttonColor: Colors.white,
-          primaryColor: Color.fromRGBO(84, 104, 255, 1.0),
-          appBarTheme: AppBarTheme(
+          primaryColor: const Color.fromRGBO(84, 104, 255, 1.0),
+          appBarTheme: const AppBarTheme(
             backgroundColor: Colors.black,
             elevation: 5,
             systemOverlayStyle: SystemUiOverlayStyle(
@@ -114,9 +114,7 @@ class SplashScreen extends StatelessWidget {
         if (snapshot.hasData && snapshot.data) {
           return _user == null ? LoginPage() : Homepage();
         }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }
